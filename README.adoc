@@ -1,0 +1,120 @@
+= System Integration Semester Plan
+
+== About the course
+
+link:00._Course_Material/00._Meta_Course_Material/about_the_course.md[About the course]
+
+// link:00._Course_Material/00._Meta_Course_Material/about_the_exam.md[About the exam]
+
+
+== Semester Plan
+
+The semester is subject to future modifications and updates during the semester.
+
+[width="100%",cols="2%,14%,8%,23%,30%,25%",options="header",]
+|===
+| # | Title | Date | Description | Learning Goals | Resources and Activities
+
+| 1 
+link:00._Course_Material/02._Slides/01._Introduction/introduction.md[Introduction]
+| Jan 30th
+a|
+* Intro: This course
+* File types and data formats.
+* Everything but REST
+* Basic Express server
+a|
+* Alternatives to REST API.
+* Data formats. TXT, JSON, YAML, CSV, XML
+* Can parse files in these formats after the homework.
+a|
+link:00._Course_Material/01._Assignments/01._Introduction_Data_Formats/00._Install.md[<Individual> Install these]
+
+link:00._Course_Material/01._Assignments/01._Introduction_Data_Formats/01a._Data_parsing_server_Part_I.md[01a <Individual> Data parsing server - Part I]
+
+link:https://python-poetry.org/docs/[Install Poetry]
+
+| 2. Data
+| Feb. 6th
+a|
+* Intro: The exam
+* Data encoding
+* Hashing, serializing, marshalling
+* Python modules
+* Environment Setup
+* Packages ecosystem in Node and Python
+* Servers
+a|
+* Can argue about different build tools for Python and understands their pros and cons.
+* Can use poetry.
+* Understands encoding, serializing and marshalling. Knows about charsets and encoding types.
+a|
+// link:00._Course_Material/01._Assignments/02._Data/00._Serialize_Marshall_data.md[00 <Optional/Individaul> Serialize / Marshall data]
+
+// link:00._Course_Material/01._Assignments/02._Data/00._Data_parsing_server_Part_II.md[00 <Individual> Data format translation servers - Part II]
+
+
+| 3. Server to server / Real-time communication - Part I
+| Feb. 13th
+a|
+* Communication
+* Protocols (TCP / UDP)
+* Making a server act as a client to another server.
+* Environment Variables (OS level, Runtime environment level)
+a|
+* Knows about different communication protocols on a superficial level.
+* Knows how to make a HTTP requests between languages.
+* Understand the different levels of environment variables and how they differ.
+* Knows how to define environment variables in different languages.
+a|
+// link:00._Course_Material/01._Assignments/03._Server_to_server_Real-time_communication_Part_I/03a._Data_parsing_server_Part_III.md[03a <Individual> Data parsing server - Part II]
+
+| 4. Real-time communication - Part II
+| Feb. 20th
+a|
+* TCP tunneling tools
+* Date
+* Client polling, short polling, long polling.
+* Server-sent events
+// * link:00._Course_Material/02._Slides/infographics/Webhooks.md[Webhooks]
+a|
+* Understand how date affects systems and communication between services.
+* Understands challenges and edge cases when working with date and why this is important during integration.
+* Understands client polling, short polling, long polling and the pros and cons of each approach.
+* Understands SSE and can explain how to implement it. Has an example ready.
+a|
+// link:00._Course_Material/01._Assignments/04._Real-time_communication_Part_II/04a._SSE_example.md[04a <Individual> SSE example]
+
+// link:00._Course_Material/01._Assignments/04._Real-time_communication_Part_II/04b._Database_granular_data_access.md[04b <Pair> Database granular access]
+
+
+
+| No Lecture
+| February 27th
+| Work on the homework.
+| Do proper research on the topic.
+| 
+
+| 5. Real-time communication - Part II / Documentation
+| March 7th
+a|
+* Webhooks
+* Git hooks
+a|
+* Understands the pros and cons of SSE and can compare it to Websockets.
+* Can recall how we did Github Webhooks without having to be able to do it on the fly. Can illustrate exactly how it works by drawing a diagram.
+* Can create a "Hello World" Git hook. 
+* Understands how to approach building a custom webhook system.
+a|
+// link:00._Course_Material/01._Assignments/05._Real-time_communication_Part_III/05a._Expose_and_integrate_with_a_webhook_system.md[05a <Pair> Expose and integrate with a webhook system]
+
+// link:https://www.youtube.com/watch?v=pRS9LRBgjYg[Resource: Video on OpenAPI]
+
+| Guest lecture
+| March 14th
+| 
+| 
+| 
+
+
+|===
