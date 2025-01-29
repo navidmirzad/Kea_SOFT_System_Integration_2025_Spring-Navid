@@ -11,12 +11,11 @@ link:00._Course_Material/00._Meta_Course_Material/about_the_course.md[About the 
 
 The semester is subject to future modifications and updates during the semester.
 
-[width="100%",cols="2%,14%,8%,23%,30%,25%",options="header",]
+[width="100%",cols="16%,8%,23%,30%,25%",options="header",]
 |===
-| # | Title | Date | Description | Learning Goals | Resources and Activities
+| Title | Date | Description | Learning Goals | Resources and Activities
 
-| 1 
-link:00._Course_Material/02._Slides/01._Introduction/introduction.md[Introduction]
+| 1.  link:00._Course_Material/02._Slides/01._Introduction/introduction.md[Introduction]
 | Jan 30th
 a|
 * Intro: This course
