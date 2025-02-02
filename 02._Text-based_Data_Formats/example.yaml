@@ -1,0 +1,13 @@
+--- 
+first_name: Navid
+last_name: Mirzad
+age: 24
+
+dawg: Addy
+
+hobbies:
+    - coding
+    - sleeping
+    - basketball
+
+# YAML filer har mindre overhead og foretrukket derfor

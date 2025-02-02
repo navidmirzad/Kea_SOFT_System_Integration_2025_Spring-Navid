@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Navid>
+<firstName>Navid</firstName>
+    <lastName>Mirzad</lastName>
+    <school>KEA</school>
+    <countries>
+        <country>Japan</country>
+        <country>London</country>
+        <country>Netherlands</country>
+    </countries>
+</Navid>
+
+<!-- Meget gentaget kode, overflødigt -->

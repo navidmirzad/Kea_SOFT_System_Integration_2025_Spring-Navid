@@ -1,0 +1,22 @@
+{
+    "users": [ 
+        {
+            "id": "1",
+            "firstName": "Navid",
+            "lastName": "Mirzad",
+            "age": "24",
+            "hobby": "Litty",
+            "favoriteFoods": ["pizza", "burger", "sushi"]
+        },
+        {
+            "id": "2",
+            "firstName": "Addy",
+            "lastName": "Mirzad",
+            "age": "6",
+            "hobby": "Chillin",
+            "favoriteFoods": ["pizza", "burger", "sushi"]
+        }
+    ]
+}
+
+/* KEY VALUE Pairs */
