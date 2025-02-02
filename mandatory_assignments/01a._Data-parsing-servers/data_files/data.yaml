@@ -1,0 +1,11 @@
+
+friends:
+  - id: "1"
+    name: "Navid"
+    strength: "Cool guy"
+  - id: "2"
+    name: "Addy"
+    strength: "Chill guy"
+  - id: "3"
+    name: "Alter ego"
+    strength: "Different guy"
