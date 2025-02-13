@@ -1,23 +1,16 @@
-Server Documentation
-Server Details
-Port: 8080
-Technology: Node.js with Express
-Served via: Localtunnel (LT)
-Documentation References
-Localtunnel NPM Package
-Localtunnel GitHub Repository
-Server Access
+# Docs
+
+# Server runs on PORT 8080 via nodejs express
+# is being served by Localtunnel (LT) 
+documentation can be found https://www.npmjs.com/package/localtunnel 
+or https://github.com/localtunnel/localtunnel
 Server URL: https://navid.loca.lt/
-Password: 195.249.146.101 (Required if accessing via a browser)
-Recommended Access Methods
-Use Postman
-Use cURL in the command line
-API Endpoints
-1. GET /
-Description: Serves a static HTML page with styling and functionality.
-2. GET /requestFastAPIData
-Description: Returns fastApiData.
-3. GET /expressData
-Description: Returns expressData.
-4. GET /names/{name}
-Description: Returns the provided {name} parameter.
+password: 195.249.146.101 if accessing from browser
+otherwise it is recommended to access from Postman or using CURL in your commandline
+
+@GetMappings
+"/" - serves a static html page with some styling and functionality
+"/requestFastAPIData" - returns fastApiData
+"/expressData" - returns expressData
+"/names/{name}" returns name
+
