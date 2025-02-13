@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Static Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Static Page</h1>
+    </header>
+    <section class="hero">
+        <h2>Everything is litty, I love when it’s hot! 🔥</h2>
+        <p>This is a simple static webpage served using Express.js.</p>
+        <button class="btn" id="clickButton">Click Me</button>
+        <p>Button clicked: <span class="counter" id="counter">0</span> times!</p>
+    </section>
+</body>
+</html>
+
+<script>
+    const button = document.querySelector(".btn");
+    const counterElement = document.querySelector(".counter");
+
+    let count = 0;
+
+    button.addEventListener("click", () => {
+        count++; 
+        counterElement.textContent = count;
+    });
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background: linear-gradient(120deg, #ff7e5f, #feb47b);
+        color: white;
+    }
+    
+    header {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+    }
+    
+    h1 {
+        margin: 0;
+    }
+    
+    .hero {
+        margin-top: 50px;
+        padding: 50px;
+    }
+    
+    .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #222;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+    
+    .btn:hover {
+        background: #444;
+    }
+    
+</style>
