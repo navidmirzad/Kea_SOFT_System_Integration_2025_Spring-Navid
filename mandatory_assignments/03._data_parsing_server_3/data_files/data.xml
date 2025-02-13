@@ -1,0 +1,17 @@
+<friends>
+  <friend>
+    <id>1</id>
+    <name>Navid</name>
+    <strength>Cool guy</strength>
+  </friend>
+  <friend>
+    <id>2</id>
+    <name>Addy</name>
+    <strength>Chill guy</strength>
+  </friend>
+  <friend>
+    <id>3</id>
+    <name>Alter ego</name>
+    <strength>Different guy</strength>
+  </friend>
+</friends>

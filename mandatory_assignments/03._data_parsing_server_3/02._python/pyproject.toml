@@ -9,7 +9,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "uvicorn (>=0.34.0,<0.35.0)",
-    "fastapi (>=0.115.8,<0.116.0)"
+    "fastapi (>=0.115.8,<0.116.0)",
+    "xmltodict (>=0.14.2,<0.15.0)",
+    "pyyaml (>=6.0.2,<7.0.0)"
 ]
 
 [tool.poetry]
