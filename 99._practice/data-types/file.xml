@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person>
+    <name>Navid</name>
+    <age>24</age>
+    <hobbies>
+        <hobby>Basketball</hobby>
+        <hobby>Football</hobby>
+        <hobby>Sleeping</hobby>
+    </hobbies>
+</person>
