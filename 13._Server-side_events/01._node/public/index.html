@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server side events</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+    <header>
+        <h1>Server-sent events (SSE)</h1>
+    </header>
+    
+    
+    <p>Status:</p>
+    <div id="server-sent_status">
+    </div>
+
+    <p>Time: </p>
+    <div id="server-sent_time">
+    </div>
+
+    <script>
+        const serverSentStatus = document.getElementById("server-sent_status");
+        const serverSentTime = document.getElementById("server-sent_time");
+
+        const eventSource = new EventSource("/synchronizetime");
+
+        eventSource.addEventListener("message", (event) => {
+            serverSentTime.textContent = event.data;
+        });
+
+        eventSource.addEventListener("open", (event) => {
+            serverSentStatus.textContent = "Connected";
+        });
+
+        eventSource.addEventListener("error", (event) => {
+            if (event.target.readyState === EventSource.CLOSED) {
+                serverSentStatus.textContent = 'Connection was closed';
+            } else if (event.target.readyState === EventSource.CONNECTING) {
+                serverSentStatus.textContent = 'Connecting...';
+            } else {
+                serverSentStatus.textContent = 'Error';
+            }
+        });
+
+    </script>
+</body>
+</html>
