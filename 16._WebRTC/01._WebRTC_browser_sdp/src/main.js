@@ -62,7 +62,7 @@ async function createAnswer() {
 
   let offer = document.getElementById("sdpOfferTextArea").value;
   if (!offer) return alert("Offer is required");
-  offer = JSON.parse(offer.value);
+  offer = JSON.parse(offer);
 
   await peerConnection.setRemoteDescription(offer);
 
@@ -78,7 +78,7 @@ async function addAnswer() {
   if (!answer) return alert("Answer is required");
   answer = JSON.parse(answer);
 
-  if (peerConnection.currentRemoteDescription) {
+  if (!peerConnection.currentRemoteDescription) {
     peerConnection.setRemoteDescription(answer);
   }
 }
