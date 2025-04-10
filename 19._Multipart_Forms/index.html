@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multipart Forms</title>
+    <title>Multipart Forms</title>  
 </head>
 <body>
 
@@ -37,7 +37,19 @@
         <input type="file" id="file" name="file" accept="image/*">
 
         <label>Description</label>
-        <input type="text" name="description">
+        <input type="text" name="description" placeholder="description ...">
+
+        <input type="submit" value="Send File">
+    </form>
+
+    <h2>File Form FastAPI</h2>
+    <form action="http://localhost:8000/fileform" method="POST" enctype="multipart/form-data">
+        <!-- You can support uploading multiple files with the 'multiple' attribute -->
+        <label for="file">File</label>
+        <input type="file" id="file" name="file" accept="image/*">
+
+        <label>Description</label>
+        <input type="text" name="description" placeholder="description...">
 
         <input type="submit" value="Send File">
     </form>
