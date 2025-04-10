@@ -1,7 +1,37 @@
 import express from "express";
 import multer from "multer";
 const app = express();
-const upload = multer({ destination: "uploads/" });
+
+/* const upload = multer({ dest: "uploads/" }); */
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(undefined, "uploads");
+  },
+  filename: (req, file, cb) => {
+    const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const uniqueFileName = `${uniquePrefix}_${file.originalname}`;
+
+    cb(undefined, uniqueFileName);
+  },
+});
+
+function fileFilter(req, file, cb) {
+  const validTypes = ["image/png", "image/svg", "image/jpg", "image/jpeg"];
+
+  if (!validTypes.includes(file.mimetype)) {
+    cb(new Error("File type is not allowed " + file.mimetype), false);
+  } else {
+    cb(null, true);
+  }
+}
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 20 * 1024 * 1024, // 20MB
+  },
+  fileFilter,
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -12,6 +42,7 @@ app.post("/form", (req, res) => {
   res.send(req.body);
 });
 
+//            upload.any(), also works well because you dont specify what and where
 app.post("/fileform", upload.single("file"), (req, res) => {
   console.log(req.body);
   res.send(req.body);

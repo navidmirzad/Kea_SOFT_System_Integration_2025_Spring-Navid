@@ -31,9 +31,10 @@
 
     
     <h2>File Form Express</h2>
-    <form action="http://localhost:8080/fileform">
+    <form action="http://localhost:8080/fileform" method="POST" enctype="multipart/form-data">
+        <!-- You can support uploading multiple files with the 'multiple' attribute -->
         <label for="file">File</label>
-        <input type="file" name="file">
+        <input type="file" id="file" name="file" accept="image/*">
 
         <label>Description</label>
         <input type="text" name="description">
@@ -41,6 +42,25 @@
         <input type="submit" value="Send File">
     </form>
     
+    <script>
+        const fileInput = document.getElementById("file");
+        fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            console.log(file);
 
+            const validTypes = ["image/png", "image/svg", "image/jpg", "image/jpeg"];
+
+            if (!validTypes.includes(file.type)) {
+                alert("Not a valid file type");
+                fileInput.value = "";
+                return
+            } 
+
+            const maxSize = 20 * 1024 * 1024 // 20MB
+            if (file.size > maxSize) {
+                alert(`File is too big. Max size: ${maxSize} bytes`)
+            }
+        });
+    </script>
 </body>
 </html>
