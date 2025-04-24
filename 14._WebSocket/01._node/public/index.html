@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket</title>
+</head>
+<body>
+    
+    <h1>WebSocket</h1>
+
+    <p>Status: </p>
+    <div id="ws-status"></div>
+
+    <p>Time: </p>
+    <div id="ws-time"></div>
+
+    <script>
+        const wsStatus = document.getElementById("ws-status");
+        const wsTime = document.getElementById("ws-time");
+
+        const socket = new WebSocket(`ws://127.0.0.1:8080`);
+
+        socket.addEventListener("open", () => {
+            wsStatus.textContent = "Connected";
+        });
+
+        socket.addEventListener("message", (event) => {
+            wsTime.textContent = event.data;
+        });
+
+        socket.addEventListener("close", () => {
+            wsStatus.textContent = "Disconnected";
+        });
+
+        socket.addEventListener("error", () => {
+            wsStatus.textContent = "Error";
+        })
+
+    </script>
+</body>
+</html>

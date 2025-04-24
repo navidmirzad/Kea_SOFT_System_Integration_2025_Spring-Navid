@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPEG-DASH</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.6/shaka-player.compiled.js" 
+    integrity="sha512-tFq8ZxX0hhNnwiPQFvCZVNEXj4jwMo1Lp9r5rLr3aeZk/+rKPmOGiBr2n7tCnHbrY3/RuYu1KUTZwpKWOwmDOw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+</head>
+<body>
+
+    <video id="video-player" style="width: 98vh; height: 98vh;" controls>
+    </video>
+
+<div>
+    <h1>MPEG-DASH</h1>
+    <p>MPEG-DASH (Dynamic Adaptive Streaming over HTTP) is a standard for streaming multimedia content over the internet. It allows for adaptive bitrate streaming, which means that the quality of the video can change dynamically based on the user's network conditions.</p>
+    
+    <h2>Key Features</h2>
+    <ul>
+        <li>Adaptive Bitrate Streaming</li>
+        <li>HTTP-based Delivery</li>
+        <li>Segmented Media Files</li>
+        <li>Support for Multiple Codecs</li>
+    </ul>
+
+    <h2>How it Works</h2>
+    <p>MPEG-DASH works by breaking the media content into small segments, which can be delivered over HTTP. The client player can then request different segments based on the current network conditions, allowing for a seamless viewing experience.</p>
+
+    <h2>Resources</h2>
+    <ul>
+        <li><a href="https://www.dashif.org/">DASH Industry Forum</a></li>
+        <li><a href="https://mpeg.chiariglione.org/standards/mpeg-dash">MPEG DASH Standard</a></li>
+        <li><a href="https://www.w3.org/TR/media-source/">Media Source Extensions</a></li>
+    </ul>
+</div>
+    
+<script>
+    const video = document.getElementById("video-player");
+    const player = new shaka.Player(video);
+
+    async function init() {
+        try {
+            await player.load("/playlist.mpd")
+            console.log("Shaka Player initialized and video loaded successfully.");
+        } catch (error) {
+            console.error("Error initializing Shaka Player:", error);
+            throw error;
+        }
+
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+
+</script>
+</body>
+</html>
