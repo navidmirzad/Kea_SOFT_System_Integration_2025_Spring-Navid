@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <video id="video-player" style="width: 98vh; height: 98vh;" controls>
+    <video id="video-player" style="width: 85vh; height: 98vh;" controls>
     </video>
 
 <div>
@@ -49,10 +49,13 @@
             console.error("Error initializing Shaka Player:", error);
             throw error;
         }
-
     }
 
     document.addEventListener("DOMContentLoaded", init);
+    player.addEventListener("adaptation", () => {
+        const variant = player.getVariantTracks().find((track) => track.active);
+        console.log(`[SHAKA] Adapted to ${variant.height}p ${variant.bandwidth}bps`);
+    });
 
 </script>
 </body>
