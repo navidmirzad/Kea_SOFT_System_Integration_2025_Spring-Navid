@@ -17,7 +17,7 @@ webSocketServer.on("connection", (ws) => {
   const interval = setInterval(() => {
     const time = new Date().toISOString();
     ws.send(time);
-  }, 1000); // send the time every 1000 MS (1000 ms = 1 second)
+  }, 1);
 
   ws.on("close", () => {
     clearInterval(interval);
