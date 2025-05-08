@@ -14,6 +14,11 @@ app.post("/githubwebhookform", (req, res) => {
   res.sendStatus(204);
 });
 
+app.post("/githubwebhookquery", (req, res) => {
+  console.log(req.query);
+  res.sendStatus(204);
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
   console.log("Server is running on PORT: ", PORT);

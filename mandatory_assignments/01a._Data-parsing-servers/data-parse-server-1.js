@@ -12,6 +12,7 @@ function jsonParsing() {
       }
       try {
         const jsonData = JSON.parse(data);
+        console.log("JSON: ", jsonData);
         resolve(jsonData);
       } catch (parseError) {
         reject(parseError);
@@ -37,6 +38,7 @@ function xmlParsing() {
         if (!friends) {
           return reject(new Error("No friends found in XML"));
         }
+        console.log("XML: ", friends);
         resolve(friends);
       });
     });
@@ -56,6 +58,7 @@ function yamlParsing() {
         if (!yamlData) {
           return reject(error);
         }
+        console.log("YAML: ", yamlData);
         resolve(yamlData);
       } catch (parseError) {
         console.log("Error parsing YAML file", parseError);
@@ -72,6 +75,8 @@ function csvParsing() {
       .pipe(csv())
       .on("data", (data) => results.push(data))
       .on("end", () => {
+        console.log("CSV: ", results);
+
         resolve(results);
       })
       .on("error", (error) => {
@@ -88,10 +93,17 @@ function txtParsing() {
         console.log("Error reading txt file", error);
         return reject(error);
       }
+      console.log("TXT: ", data);
       resolve(data);
     });
   });
 }
+
+/* jsonParsing();
+xmlParsing();
+yamlParsing();
+csvParsing();
+txtParsing(); */
 
 export default {
   jsonParsing,

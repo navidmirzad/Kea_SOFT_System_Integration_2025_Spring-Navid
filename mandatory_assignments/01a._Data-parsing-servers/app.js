@@ -2,7 +2,7 @@ import express from "express";
 import parsers from "./data-parse-server-1.js";
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.LOCALPORT || 8080;
 
 app.get("/", (req, res) => {
   res.send(`
@@ -67,6 +67,70 @@ app.get("/txt", async (req, res) => {
     res.send({ data });
   } catch (error) {
     res.status(500).send({ error: error.message });
+  }
+});
+
+// PYTHON SERVER
+
+const pythonServer = "http://localhost:8000";
+
+app.get("/pythonJson", async (req, res) => {
+  try {
+    const response = await fetch(`${pythonServer}/json`);
+    const data = await response.json();
+    res.send({ data });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Failed to fetch JSON Data from Python server" });
+  }
+});
+
+app.get("/pythonXml", async (req, res) => {
+  try {
+    const response = await fetch(`${pythonServer}/xml`);
+    const data = await response.json();
+    res.send({ data });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Failed to fetch XML Data from Python server" });
+  }
+});
+
+app.get("/pythonYaml", async (req, res) => {
+  try {
+    const response = await fetch(`${pythonServer}/yaml`);
+    const data = await response.json();
+    res.send({ data });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Failed to fetch YAML Data from Python server" });
+  }
+});
+
+app.get("/pythonCsv", async (req, res) => {
+  try {
+    const response = await fetch(`${pythonServer}/csv`);
+    const data = await response.json();
+    res.send({ data });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Failed to fetch CSV Data from Python server" });
+  }
+});
+
+app.get("/pythonTxt", async (req, res) => {
+  try {
+    const response = await fetch(`${pythonServer}/txt`);
+    const data = await response.json();
+    res.send({ data });
+  } catch (error) {
+    res
+      .status(500)
+      .send({ error: "Failed to fetch TXT Data from Python server" });
   }
 });
 
