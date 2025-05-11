@@ -11,23 +11,24 @@ app.get("/events/subscribe", (req, res) => {
   res.setHeader("Cache-Control", "no-cache");
   res.setHeader("Connection", "keep-alive");
 
+  // Add the response object to the clients list
   clients.push(res);
 
+  // When the connection is closed (client disconnects), remove it from the clients list
   req.on("close", () => {
     clients = clients.filter((client) => client !== res);
   });
-
-  clients = [];
-
-  res.status(200).end();
 });
 
 app.get("/events/publish", (req, res) => {
   const message = { data: "This is a new message" };
 
-  clients.forEach((res) => {
-    res.send(message);
+  // Send the message to all subscribed clients
+  clients.forEach((client) => {
+    client.json(message); // Send JSON message to client
   });
+
+  res.status(200).send("Messages sent to clients.");
 });
 
 const PORT = 8080;

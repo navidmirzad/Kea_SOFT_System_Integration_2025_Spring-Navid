@@ -4,7 +4,16 @@ const app = express();
 
 app.use(express.static("public"));
 
-const randomNumbers = [1, 25, 574];
+const randomNumbers = [1, 25, 74];
+
+function addRandomNumber() {
+  setInterval(() => {
+    const newNumber = getRandomInt(0, 100);
+    randomNumbers.push(newNumber);
+  }, 5000);
+}
+
+addRandomNumber();
 
 app.get("/randomNumbers", (req, res) => {
   res.send({ data: randomNumbers });
