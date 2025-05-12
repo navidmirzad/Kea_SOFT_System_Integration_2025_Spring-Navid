@@ -51,27 +51,50 @@ const acceptedEvents = [
  * /create:
  *   post:
  *     summary: Create a new webhook
+ *     description: |
+ *       This endpoint allows you to create a new webhook by providing a URL and the events it should listen to.
+ *       You can associate multiple events to a single URL, and events can be appended to an existing URL if already registered.
+ *     operationId: createWebhook
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - url
+ *               - events
  *             properties:
  *               url:
  *                 type: string
+ *                 description: The URL to which events will be sent.
  *               events:
  *                 type: array
  *                 items:
  *                   type: string
  *                   enum: [payment_received, payment_processed, invoice_processed, payment_completed]
- *     description: |
- *       Create a new webhook
+ *                 description: A list of events the webhook should listen to.
  *     responses:
  *       201:
- *         description: Webhook created
+ *         description: Webhook created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: string
+ *                   example: Webhook created
  *       400:
- *         description: Invalid payload or event
+ *         description: Invalid request payload or event
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Invalid payload
  */
 app.post("/create", (req, res) => {
   const { url, events } = req.body;
@@ -100,18 +123,42 @@ app.post("/create", (req, res) => {
  * /delete:
  *   delete:
  *     summary: Delete a webhook by URL
+ *     description: |
+ *       This endpoint deletes a webhook by its URL. If the URL is registered, it will be removed along with associated events.
+ *     operationId: deleteWebhook
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - url
  *             properties:
  *               url:
  *                 type: string
+ *                 description: The URL of the webhook to be deleted.
  *     responses:
  *       200:
- *         description: Webhook deleted
+ *         description: Webhook deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: string
+ *                   example: Webhook deleted
+ *       404:
+ *         description: Webhook not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: Webhook URL not found
  */
 app.delete("/delete", (req, res) => {
   const { url } = req.body;
@@ -131,10 +178,37 @@ app.delete("/delete", (req, res) => {
  * @swagger
  * /ping:
  *   get:
- *     summary: Ping all webhook URLs
+ *     summary: Ping all registered webhook URLs
+ *     description: |
+ *       This endpoint sends a ping request to all registered webhooks and returns the results.
+ *       It can help check if the webhooks are still reachable and active.
+ *     operationId: pingWebhooks
  *     responses:
  *       200:
- *         description: Ping results
+ *         description: Results of the ping requests
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       url:
+ *                         type: string
+ *                       events:
+ *                         type: array
+ *                         items:
+ *                           type: string
+ *                       error:
+ *                         type: string
+ *                         description: Error message if the ping fails
+ *                         example: "timeout"
+ *                       success:
+ *                         type: boolean
+ *                         example: true
  */
 app.get("/ping", async (req, res) => {
   const webhooks = loadWebhooks();
