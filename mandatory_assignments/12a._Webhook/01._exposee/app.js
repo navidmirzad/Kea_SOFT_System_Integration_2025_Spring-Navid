@@ -82,14 +82,15 @@ app.post("/create", (req, res) => {
 
   const webhooks = loadWebhooks();
 
-  events.forEach((event) => {
-    if (acceptedEvents.includes(event)) {
-      webhooks.push({ url, events });
-      saveWebhooks(webhooks);
-    } else {
-      return res.status(400).send({ data: `Invalid event: ${event}` });
-    }
-  });
+  const existingUrl = webhooks.find((webhook) => webhook.url === url);
+
+  if (existingUrl) {
+    existingUrl.events = [...new Set([...existingUrl.events, ...events])];
+  } else {
+    webhooks.push({ url, events });
+  }
+
+  saveWebhooks(webhooks);
 
   res.status(201).send({ data: "Webhook created" });
 });
