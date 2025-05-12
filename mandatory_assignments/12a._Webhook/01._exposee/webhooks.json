@@ -1,0 +1,8 @@
+[
+  {
+    "url": "http://localhost:8081/webhook",
+    "events": [
+      "payment_completed"
+    ]
+  }
+]

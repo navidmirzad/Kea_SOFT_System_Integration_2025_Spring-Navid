@@ -19,7 +19,7 @@ function sendTimeToClient(res) {
   res.write(`data: ${time} \n\n`);
 }
 
-const PORT = Number(process.env.PORT) || 8080;
+const PORT = 8080;
 app.listen(PORT, () => {
   console.log("Server is running on PORT: ", PORT);
 });
