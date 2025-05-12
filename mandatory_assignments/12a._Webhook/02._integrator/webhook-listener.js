@@ -9,11 +9,6 @@ app.get("/webhook", async (req, res) => {
   res.status(200).send(data);
 });
 
-app.post("/webhook", (req, res) => {
-  console.log(req.body);
-  res.send({ data: "Webhook called" });
-});
-
 const PORT = 8081;
 app.listen(PORT, () => {
   console.log("Webhook listener is running on port: ", PORT);

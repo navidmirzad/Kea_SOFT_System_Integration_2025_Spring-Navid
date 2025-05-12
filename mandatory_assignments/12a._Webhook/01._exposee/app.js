@@ -160,6 +160,11 @@ app.get("/ping", async (req, res) => {
   res.status(200).send({ data: results });
 });
 
+app.post("/webhook", (req, res) => {
+  console.log(req.body);
+  res.send({ data: "Webhook called" });
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`App listening on ${PORT}`);
