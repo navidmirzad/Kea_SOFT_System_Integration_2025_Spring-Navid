@@ -1,5 +1,5 @@
 {
-  "name": "10a._database_docs",
+  "name": "10b._database_migration",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -11,6 +11,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "knex": "^3.1.0"
+    "dotenv": "^16.5.0",
+    "mongodb": "^6.16.0",
+    "mysql2": "^3.14.1",
+    "sqlite3": "^5.1.7"
   }
 }
