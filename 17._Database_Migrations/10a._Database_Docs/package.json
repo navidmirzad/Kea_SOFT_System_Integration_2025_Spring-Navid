@@ -1,5 +1,5 @@
 {
-  "name": "17._database_migrations",
+  "name": "10a._database_docs",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -9,10 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "dotenv": "^16.5.0",
-    "knex": "^3.1.0",
-    "pg": "^8.14.1"
-  }
+  "description": ""
 }

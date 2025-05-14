@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config();
 
 /**
  * @type { import("knex").Knex.Config }
@@ -6,10 +7,10 @@ import "dotenv/config";
 export default {
   client: "postgresql",
   connection: {
-    database: process.env.POSTGRES_DB,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    host: process.env.POSTGRES_HOST,
+    user: "myuser",
+    password: "mypassword",
+    database: "mydatabase",
+    host: "localhost",
   },
   migrations: {
     tableName: "knex_migrations",
