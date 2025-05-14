@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <style>
+            body {
+                margin: 5vw;
+                background: #fafafa;
+                font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            }
+            
+            h1, h2 {
+                font-family: Titillium Web, sans-serif;
+                color: #3b4151;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            
+            table {
+                width: 100%;
+                margin-bottom: 15px;
+                border-collapse: collapse;
+                border-radius: 4px;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+                background: #ffffff;
+            }
+            
+            th, td {
+                font-size: 14px;
+                padding: 10px;
+                text-align: left;
+                font-family: Source Code Pro, monospace;
+                font-weight: 600;
+                color: #3b4151;
+                border-bottom: 1px solid rgba(59, 65, 81, .2);
+            }
+            
+            th {
+                font-weight: 700;
+                background: hsla(0, 0%, 100%, .8);
+            }
+            
+            tr:nth-child(even) {
+                background-color: rgba(97, 175, 254, .1);
+            }
+            
+            tbody tr:hover {
+                background: rgba(0, 0, 0, .02);
+            }
+        </style>
+        <title>university_db - Docs</title>
+    </head>
+    <body>
+        <main>
+            <h1>university_db</h1>
+    
+            <div class="database-table">
+        <h2 class="database-table-name">courses</h2>
+        <table class="database-table-body">
+            <tr>
+                <th>field</th><th>type</th><th>null</th><th>key</th><th>extra</th><th>typeJS</th><th>keyTo</th>                 
+            </tr>
+    
+        </tr>
+        </thead>
+        <tbody>
+    
+            
+                <tr>
+                    <td>course_id</td><td>int</td><td>NO</td><td>PRI</td><td>auto_increment</td><td>Number</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>course_name</td><td>varchar(100)</td><td>NO</td><td></td><td></td><td>String</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>course_code</td><td>varchar(10)</td><td>NO</td><td>UNI</td><td></td><td>String</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>credits</td><td>int</td><td>YES</td><td></td><td></td><td>Number</td><td></td>
+                </tr>
+                
+    
+        </tbody>
+        </table>
+    
+        <h2 class="database-table-name">enrollments</h2>
+        <table class="database-table-body">
+            <tr>
+                <th>field</th><th>type</th><th>null</th><th>key</th><th>extra</th><th>typeJS</th><th>keyTo</th>                 
+            </tr>
+    
+        </tr>
+        </thead>
+        <tbody>
+    
+            
+                <tr>
+                    <td>enrollment_id</td><td>int</td><td>NO</td><td>PRI</td><td>auto_increment</td><td>Number</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>student_id</td><td>int</td><td>YES</td><td>MUL</td><td></td><td>Number</td><td>students.student_id</td>
+                </tr>
+                
+                <tr>
+                    <td>course_id</td><td>int</td><td>YES</td><td>MUL</td><td></td><td>Number</td><td>courses.course_id</td>
+                </tr>
+                
+                <tr>
+                    <td>enrollment_date</td><td>datetime</td><td>YES</td><td></td><td>DEFAULT_GENERATED</td><td>String</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>grade</td><td>char(2)</td><td>YES</td><td></td><td></td><td>String</td><td></td>
+                </tr>
+                
+    
+        </tbody>
+        </table>
+    
+        <h2 class="database-table-name">students</h2>
+        <table class="database-table-body">
+            <tr>
+                <th>field</th><th>type</th><th>null</th><th>key</th><th>extra</th><th>typeJS</th><th>keyTo</th>                 
+            </tr>
+    
+        </tr>
+        </thead>
+        <tbody>
+    
+            
+                <tr>
+                    <td>student_id</td><td>int</td><td>NO</td><td>PRI</td><td>auto_increment</td><td>Number</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>first_name</td><td>varchar(50)</td><td>NO</td><td></td><td></td><td>String</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>last_name</td><td>varchar(50)</td><td>NO</td><td></td><td></td><td>String</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>birth_date</td><td>date</td><td>YES</td><td></td><td></td><td>Date</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>email</td><td>varchar(100)</td><td>YES</td><td>UNI</td><td></td><td>String</td><td></td>
+                </tr>
+                
+                <tr>
+                    <td>enrollment_year</td><td>year</td><td>YES</td><td></td><td></td><td>Number</td><td></td>
+                </tr>
+                
+    
+        </tbody>
+        </table>
+    </div>
+            </main> 
+            <br><br>
+            <footer>Powered by MRO</footer>
+        </body>
+        </html>

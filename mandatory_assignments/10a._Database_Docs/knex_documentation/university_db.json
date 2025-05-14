@@ -1,0 +1,133 @@
+{
+    "schema": [
+        {
+            "table": "courses",
+            "columns": [
+                {
+                    "field": "course_id",
+                    "type": "int",
+                    "null": "NO",
+                    "key": "PRI",
+                    "extra": "auto_increment",
+                    "typeJS": "Number"
+                },
+                {
+                    "field": "course_name",
+                    "type": "varchar(100)",
+                    "null": "NO",
+                    "typeJS": "String"
+                },
+                {
+                    "field": "course_code",
+                    "type": "varchar(10)",
+                    "null": "NO",
+                    "key": "UNI",
+                    "typeJS": "String"
+                },
+                {
+                    "field": "credits",
+                    "type": "int",
+                    "null": "YES",
+                    "typeJS": "Number"
+                }
+            ]
+        },
+        {
+            "table": "enrollments",
+            "columns": [
+                {
+                    "field": "enrollment_id",
+                    "type": "int",
+                    "null": "NO",
+                    "key": "PRI",
+                    "extra": "auto_increment",
+                    "typeJS": "Number"
+                },
+                {
+                    "field": "student_id",
+                    "type": "int",
+                    "null": "YES",
+                    "key": "MUL",
+                    "keyto": [
+                        "students.student_id"
+                    ],
+                    "typeJS": "Number",
+                    "keyTo": [
+                        "students.student_id"
+                    ]
+                },
+                {
+                    "field": "course_id",
+                    "type": "int",
+                    "null": "YES",
+                    "key": "MUL",
+                    "keyto": [
+                        "courses.course_id"
+                    ],
+                    "typeJS": "Number",
+                    "keyTo": [
+                        "courses.course_id"
+                    ]
+                },
+                {
+                    "field": "enrollment_date",
+                    "type": "datetime",
+                    "default": "CURRENT_TIMESTAMP",
+                    "null": "YES",
+                    "extra": "DEFAULT_GENERATED",
+                    "typeJS": "String"
+                },
+                {
+                    "field": "grade",
+                    "type": "char(2)",
+                    "null": "YES",
+                    "typeJS": "String"
+                }
+            ]
+        },
+        {
+            "table": "students",
+            "columns": [
+                {
+                    "field": "student_id",
+                    "type": "int",
+                    "null": "NO",
+                    "key": "PRI",
+                    "extra": "auto_increment",
+                    "typeJS": "Number"
+                },
+                {
+                    "field": "first_name",
+                    "type": "varchar(50)",
+                    "null": "NO",
+                    "typeJS": "String"
+                },
+                {
+                    "field": "last_name",
+                    "type": "varchar(50)",
+                    "null": "NO",
+                    "typeJS": "String"
+                },
+                {
+                    "field": "birth_date",
+                    "type": "date",
+                    "null": "YES",
+                    "typeJS": "Date"
+                },
+                {
+                    "field": "email",
+                    "type": "varchar(100)",
+                    "null": "YES",
+                    "key": "UNI",
+                    "typeJS": "String"
+                },
+                {
+                    "field": "enrollment_year",
+                    "type": "year",
+                    "null": "YES",
+                    "typeJS": "Number"
+                }
+            ]
+        }
+    ]
+}
