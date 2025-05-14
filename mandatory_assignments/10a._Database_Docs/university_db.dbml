@@ -1,0 +1,28 @@
+// university_db.dbml
+
+Table students {
+  student_id int [pk, increment]
+  first_name varchar(50)
+  last_name varchar(50)
+  birth_date date
+  email varchar(100) [unique]
+  enrollment_year year
+}
+
+Table courses {
+  course_id int [pk, increment]
+  course_name varchar(100)
+  course_code varchar(10) [unique]
+  credits int
+}
+
+Table enrollments {
+  enrollment_id int [pk, increment]
+  student_id int
+  course_id int
+  enrollment_date datetime
+  grade char(2)
+}
+
+Ref: enrollments.student_id > students.student_id
+Ref: enrollments.course_id > courses.course_id
