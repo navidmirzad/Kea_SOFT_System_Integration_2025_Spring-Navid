@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment Demo</title>
+    <link rel="icon" href="https://stripe.com/favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f9fc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 80px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 32px 24px;
+            text-align: center;
+        }
+        h1 {
+            color: #635bff;
+            margin-bottom: 16px;
+        }
+        p {
+            color: #555;
+            margin-bottom: 32px;
+        }
+        #checkout-button {
+            background: #635bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 32px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #checkout-button:hover {
+            background: #5a50e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Buy a T-shirt</h1>
+        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="T-shirt" style="width:200px; border-radius:8px; margin-bottom:20px;">
+        <p>Click below to checkout securely with Stripe.</p>
+        <button id="checkout-button">Checkout</button>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      var stripe = Stripe("pk_test_51ROk3XRagrphhuyyFYwCC5Shlr3Oz8S6wEbW8ZZi03zsee14tZJ9eM3BRRVWuxie3mQWi5uWeDZSPpVyk7Ws4mZ6000DgS3P5k");
+
+      document.getElementById('checkout-button').addEventListener('click', function () {
+        fetch('/create-checkout-session', {
+          method: 'POST',
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (sessionId) {
+            return stripe.redirectToCheckout({ sessionId: sessionId.id });
+          })
+          .then(function (result) {
+            if (result.error) {
+              alert(result.error.message);
+            }
+          })
+          .catch(function (error) {
+            console.error("Error:", error);
+          });
+      });
+    </script>
+</body>
+</html>
