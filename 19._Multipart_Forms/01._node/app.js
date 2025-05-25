@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
     cb(undefined, "uploads");
   },
   filename: (req, file, cb) => {
+    // Date.now returns unix epoch time in milliseconds
     const uniquePrefix = Date.now() + "-" + Math.round(Math.random() * 1e9);
     const uniqueFileName = `${uniquePrefix}_${file.originalname}`;
 
@@ -30,7 +31,7 @@ const upload = multer({
   limits: {
     fileSize: 20 * 1024 * 1024, // 20MB
   },
-  fileFilter,
+  fileFilter, // make sure that its a valid file type
 });
 
 app.use(express.urlencoded({ extended: true }));
