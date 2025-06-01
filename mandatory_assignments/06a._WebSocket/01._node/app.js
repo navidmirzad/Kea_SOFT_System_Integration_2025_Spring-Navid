@@ -14,13 +14,14 @@ const webSocketServer = new WebSocketServer({ server });
 webSocketServer.on("connection", (ws) => {
   console.log("Client connected");
 
-  const interval = setInterval(() => {
-    const time = new Date().toISOString();
-    ws.send(time);
-  }, 1);
+  ws.on("message", (message) => {
+    console.log("Received from client:", message.toString());
+
+    const reply = `[${new Date().toISOString()}] Server received: ${message}`;
+    ws.send(reply);
+  });
 
   ws.on("close", () => {
-    clearInterval(interval);
     console.log("Client disconnected");
   });
 });

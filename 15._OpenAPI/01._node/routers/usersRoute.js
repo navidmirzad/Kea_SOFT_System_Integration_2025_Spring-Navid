@@ -4,7 +4,7 @@ const router = Router();
 
 let nextId = 4;
 const users = [
-  { is: 1, name: "Arne" },
+  { id: 1, name: "Arne" },
   { id: 2, name: "Minho" },
   { id: 3, name: "Charlie" },
 ];
@@ -27,18 +27,54 @@ router.get("/api/users", (req, res) => {
  * /api/users:
  *   post:
  *     description: Create a new user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
  *     responses:
  *       200:
- *         description: Returns the users that was created
+ *         description: Returns the user that was created
  */
-router.post("/api/users/:name", (req, res) => {
-  const newUser = req.body;
-  newUser.id = nextId++;
-  newUser.name = req.params.name;
-
+router.post("/api/users", (req, res) => {
+  const newUser = {
+    id: nextId++,
+    name: req.body.name,
+  };
   users.push(newUser);
-
   res.send({ data: newUser });
+});
+
+/**
+ * @openapi
+ * /api/users/{id}:
+ *   delete:
+ *     description: Delete a user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the user to delete
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Returns the ID of the deleted user
+ */
+router.delete("/api/users/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const userIndex = users.findIndex((user) => user.id === id);
+
+  if (userIndex === -1) {
+    return res.status(404).send({ error: "User not found" });
+  }
+
+  users.splice(userIndex, 1);
+  res.send({ data: { id } });
 });
 
 export default router;

@@ -1,42 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WebSocket Full-Duplex Demo</title>
 </head>
 <body>
-    
-    <h1>WebSocket</h1>
 
-    <p>Status: </p>
-    <div id="ws-status"></div>
+  <h1>WebSocket Full-Duplex Example</h1>
 
-    <p>Time: </p>
-    <div id="ws-time"></div>
+  <p>Status:</p>
+  <div id="ws-status">Connecting...</div>
 
-    <script>
-        const wsStatus = document.getElementById("ws-status");
-        const wsTime = document.getElementById("ws-time");
+  <hr />
 
-        const socket = new WebSocket(`ws://127.0.0.1:8080`);
+  <p><strong>Send Message to Server:</strong></p>
+  <input type="text" id="ws-input" placeholder="Type your message" />
+  <button id="ws-send">Send</button>
 
-        socket.addEventListener("open", () => {
-            wsStatus.textContent = "Connected";
-        });
+  <p><strong>Server Response:</strong></p>
+  <div id="ws-response"></div>
 
-        socket.addEventListener("message", (event) => {
-            wsTime.textContent = event.data;
-        });
+  <script>
+    const wsStatus = document.getElementById("ws-status");
+    const wsInput = document.getElementById("ws-input");
+    const wsSend = document.getElementById("ws-send");
+    const wsResponse = document.getElementById("ws-response");
 
-        socket.addEventListener("close", () => {
-            wsStatus.textContent = "Disconnected";
-        });
+    const socket = new WebSocket("ws://127.0.0.1:8080");
 
-        socket.addEventListener("error", () => {
-            wsStatus.textContent = "Error";
-        })
+    socket.addEventListener("open", () => {
+      wsStatus.textContent = "Connected";
+    });
 
-    </script>
+    socket.addEventListener("message", (event) => {
+      wsResponse.textContent = event.data;
+    });
+
+    socket.addEventListener("close", () => {
+      wsStatus.textContent = "Disconnected";
+    });
+
+    socket.addEventListener("error", () => {
+      wsStatus.textContent = "Error";
+    });
+
+    wsSend.addEventListener("click", () => {
+      const message = wsInput.value.trim();
+      if (message && socket.readyState === WebSocket.OPEN) {
+        socket.send(message);
+        wsInput.value = "";
+      }
+    });
+  </script>
+
 </body>
 </html>

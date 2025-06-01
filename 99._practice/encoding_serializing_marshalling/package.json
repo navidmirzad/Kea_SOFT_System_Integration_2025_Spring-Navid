@@ -1,5 +1,5 @@
 {
-  "name": "17._database_migrations",
+  "name": "encoding_serializing_marshalling",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -11,8 +11,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "dotenv": "^16.4.7",
-    "knex": "^3.1.0",
-    "pg": "^8.14.1"
+    "@grpc/grpc-js": "^1.13.4",
+    "@grpc/proto-loader": "^0.7.15",
+    "express": "^5.1.0"
   }
 }
