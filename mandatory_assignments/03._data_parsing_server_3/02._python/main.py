@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from data_parser import parse_json, parse_xml, parse_yaml, parse_csv, parse_txt
 import requests
 
+
 app = FastAPI()
 
 @app.get("/json")
