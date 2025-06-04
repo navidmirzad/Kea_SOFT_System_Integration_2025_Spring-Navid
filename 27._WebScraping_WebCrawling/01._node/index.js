@@ -17,5 +17,5 @@ $("#products [product]").each((index, element) => {
   const name = $(element).find(".site-product-link").text();
   const price = $(element).find(".site-currency-lg").text();
 
-  console.log(name.trim(), price);
+  console.log(name, price);
 });
