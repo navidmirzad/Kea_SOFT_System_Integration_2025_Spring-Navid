@@ -1,11 +1,8 @@
 import "./style.css";
 
-// WebRTC (Web Real-Time Communication) enables direct peer-to-peer audio, video, and data communication between browsers.
-// The main steps are: capturing media, creating a peer connection, exchanging SDP offers/answers, and streaming media.
-
-let localStream; // Media stream from the local user's camera/microphone
-let remoteStream; // Media stream received from the remote peer
-let peerConnection; // RTCPeerConnection instance for managing the connection
+let localStream;
+let remoteStream;
+let peerConnection;
 
 // STUN server helps peers discover their public IP addresses for NAT traversal
 const servers = {
@@ -16,7 +13,6 @@ const servers = {
   ],
 };
 
-// Get local media (camera/mic) and display it in the local video element
 async function init() {
   localStream = await navigator.mediaDevices.getUserMedia({
     video: true,
@@ -55,9 +51,7 @@ async function createPeerConnection(sdpOfferTextAreaId) {
   };
 }
 
-// Starts the offer process as the "caller" peer
 async function createOffer() {
-  // Check if local media stream is available
   if (!localStream) {
     return alert("localStream is not ready.");
   }
@@ -69,12 +63,10 @@ async function createOffer() {
   await peerConnection.setLocalDescription(offer);
 }
 
-// Starts the answer process as the "receiver" peer
 async function createAnswer() {
   // Create a new peer connection and add local tracks
   await createPeerConnection("sdpAnswerTextArea");
 
-  // Get the offer SDP from the UI
   let offer = document.getElementById("sdpOfferTextArea").value;
   if (!offer) return alert("Offer is required");
   offer = JSON.parse(offer);

@@ -9,6 +9,10 @@ const app = express();
 app.use(express.json());
 app.use(express.static("public"));
 
+app.get("/stripe-key", (req, res) => {
+  res.json({ key: process.env.STRIPE_PUBLISHABLE_KEY });
+});
+
 app.post("/create-checkout-session", async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({

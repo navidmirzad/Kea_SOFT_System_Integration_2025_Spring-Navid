@@ -5,7 +5,7 @@ import { expressMiddleware } from "@apollo/server/express4";
 import { readFileSync } from "fs";
 import { resolvers } from "./resolvers.js";
 
-// Read the schema
+// typeDefs = what data and operations are available
 const typeDefs = readFileSync("./schema.graphql", "utf-8");
 
 // Create an Express app
@@ -14,7 +14,7 @@ const app = express();
 // Create Apollo Server instance
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers, // how to get that data
 });
 
 // Start Apollo Server

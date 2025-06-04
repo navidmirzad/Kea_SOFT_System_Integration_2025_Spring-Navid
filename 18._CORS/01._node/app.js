@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 const app = express();
 
-// this sets cors globally for all routes in app.js which is not good.
+// this sets cors globally for all routes which is not good.
 //app.use(cors());
 
 // how to manually set cors globally for everything still not so good.
@@ -14,6 +14,17 @@ const app = express();
   );
   next();
 }); */
+
+// Detailed CORS configuration example
+/*
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://yourdomain.com"], // allow only these origins
+    methods: ["GET", "POST", "PUT", "DELETE"], // allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // allowed headers
+  })
+);
+*/
 
 // how to configure cors even more in detail
 app.use(

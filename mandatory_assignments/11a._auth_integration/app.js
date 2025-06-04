@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import pkg from "express-openid-connect";
+import pkg from "express-openid-connect"; // middleware for integration with auth0
 
 dotenv.config();
 
