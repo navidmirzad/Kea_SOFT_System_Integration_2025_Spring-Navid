@@ -6,23 +6,23 @@ app = FastAPI()
 
 @app.get("/json")
 def get_json():
-    return {"data": parse_json()}
+    return parse_json()
 
 @app.get("/xml")
 def get_xml():
-    return {"data": parse_xml()}
+    return parse_xml()
 
 @app.get("/yaml")
 def get_yaml():
-    return {"data": parse_yaml()}
+    return parse_yaml()
 
 @app.get("/csv")
 def get_csv():
-    return {"data": parse_csv()}
+    return parse_csv()
 
 @app.get("/txt")
 def get_txt():
-    return {"data": parse_txt()}
+    return parse_txt()
 
 # Node server
 

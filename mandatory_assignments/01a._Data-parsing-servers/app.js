@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 app.get("/json", async (req, res) => {
   try {
     const data = await parsers.jsonParsing();
-    res.send({ data });
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -37,7 +37,7 @@ app.get("/json", async (req, res) => {
 app.get("/xml", async (req, res) => {
   try {
     const data = await parsers.xmlParsing();
-    res.send({ data });
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -55,7 +55,7 @@ app.get("/yaml", async (req, res) => {
 app.get("/csv", async (req, res) => {
   try {
     const data = await parsers.csvParsing();
-    res.send({ data });
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
@@ -64,7 +64,7 @@ app.get("/csv", async (req, res) => {
 app.get("/txt", async (req, res) => {
   try {
     const data = await parsers.txtParsing();
-    res.send({ data });
+    res.send(data);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

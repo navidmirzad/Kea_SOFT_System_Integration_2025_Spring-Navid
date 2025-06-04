@@ -23,7 +23,7 @@ function jsonParsing() {
 
 function xmlParsing() {
   return new Promise((resolve, reject) => {
-    const xmlParser = new xml2js.Parser();
+    const xmlParser = new xml2js.Parser({ explicitArray: false }); // prevents values from being wrapped in arrays
     fs.readFile("./data_files/data.xml", "utf8", (error, data) => {
       if (error) {
         console.log("Error reading XML file", error);
@@ -34,7 +34,7 @@ function xmlParsing() {
           console.log("Error parsing XML", error);
           return reject(error);
         }
-        const friends = result.friends.friend;
+        const friends = result.friends.friend; // extract to js object
         if (!friends) {
           return reject(new Error("No friends found in XML"));
         }
@@ -93,8 +93,26 @@ function txtParsing() {
         console.log("Error reading txt file", error);
         return reject(error);
       }
-      console.log("TXT: ", data);
-      resolve(data);
+
+      try {
+        // turning the txt file into an array of objects
+        const lines = data.trim().split("\n");
+        const result = lines.map((line) => {
+          const obj = {};
+          const parts = line.split(",");
+          parts.forEach((part) => {
+            const [key, value] = part.split(":");
+            if (key && value) {
+              obj[key.trim()] = value.trim();
+            }
+          });
+          return obj;
+        });
+        console.log("TXT parsed to object:", result);
+        resolve(result);
+      } catch (parseError) {
+        reject(parseError);
+      }
     });
   });
 }
