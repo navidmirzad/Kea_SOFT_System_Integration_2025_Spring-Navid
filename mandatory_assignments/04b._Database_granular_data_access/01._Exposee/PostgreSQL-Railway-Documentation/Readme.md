@@ -63,6 +63,8 @@ psql -h shinkansen.proxy.rlwy.net -U <user_name> -p 10363 -d railway
 PGPASSWORD="password-for-given-user" 
 psql -h shinkansen.proxy.rlwy.net -U <user_name> -p 10363 -d railway
 
+# Locally:  psql -U emp1 -d company
+
 Database Roles & Permissions
 Database has the following roles (users):
 
